@@ -427,6 +427,8 @@ class BaseRedisCache(BaseCache):
 
                 # Set value of `func` and set timeout
                 self._set(client, key, self.prep_value(value), timeout)
+            else:
+                value = self.get(key._original_key) or func()
 
         return value
 
